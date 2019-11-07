@@ -57,6 +57,16 @@ public:
 		// ray.u = ...
 		// ray.v = ...
 
+		Vec3f p = ray.org + f * ray.dir;
+		float area = norm(edge1.cross(edge2));
+
+		Vec3f vecAP = p - m_a;
+		float areaU = norm(vecAP.cross(edge1));
+		ray.u = areaU / area;
+
+		float areaV = norm(vecAP.cross(edge2));
+		ray.v = areaV / area;
+		
 		ray.t = f;
 		ray.hit = this;
 		return true;
